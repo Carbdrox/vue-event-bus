@@ -16,6 +16,7 @@
     "bus"
   ],
   "author": "Christian Förster",
+  "contributors": [],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Carbdrox/vue-event-bus/issues"
