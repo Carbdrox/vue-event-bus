@@ -1,0 +1,24 @@
+{
+  "name": "vue-event-bus",
+  "version": "0.1.0",
+  "description": "A Vue.Js plugin which adds a global event bus to your project.",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Carbdrox/vue-event-bus.git"
+  },
+  "keywords": [
+    "Vue",
+    "plugin",
+    "events",
+    "eventbus",
+    "event-bus",
+    "bus"
+  ],
+  "author": "Christian Förster",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Carbdrox/vue-event-bus/issues"
+  },
+  "homepage": "https://github.com/Carbdrox/vue-event-bus#readme"
+}
