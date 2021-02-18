@@ -1,30 +1,10 @@
-const VueEventBus = {
+import { EventService } from './services/EventService'
 
-    events: {},
-
+export default {
     install(Vue) {
-        Vue.prototype.$listen = (eventName, callback) => {
-            if(!this.events.hasOwnProperty(eventName)) {
-                this.events[eventName] = [];
-            }
+        const eventBus = new EventService();
 
-            this.events[eventName].push(callback);
-        };
-
-
-
-        Vue.prototype.$callEvent = (eventName, params = {}) => {
-            if(this.events.hasOwnProperty(eventName)) {
-                let events = [...this.events[eventName]].reverse();
-
-                console.log(events, this.events[eventName])
-
-                events.forEach(eventCallback => {
-                    eventCallback(params);
-                })
-            }
-        }
+        Vue.prototype.$listen = eventBus.listen;
+        Vue.prototype.$emitEvent = eventBus.emit;
     }
-}
-
-export default VueEventBus;
+};
