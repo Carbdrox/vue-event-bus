@@ -18,8 +18,7 @@
     "url": "git+https://github.com/Carbdrox/vue-event-bus.git"
   },
   "files": [
-    "src",
-    "dist"
+    "src"
   ],
   "license": "MIT",
   "bugs": {
