@@ -1,7 +1,7 @@
 # Vue.Js Event-Bus
 A Vue.Js plugin which adds a global event bus to your vue-project.
 
-##Installation
+## Installation
 
 ### Using npm
 
