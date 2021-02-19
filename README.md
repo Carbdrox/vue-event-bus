@@ -9,7 +9,7 @@ A Vue.Js plugin which adds a global event bus to your vue-project.
 npm i @carbdrox/vue-event-bus --save
 ```
 
-### Setup
+## Setup
 Normally done inside `main.js`
 ```javascript
 import VueEventBus from "@carbdrox/vue-event-bus";
@@ -17,7 +17,7 @@ import VueEventBus from "@carbdrox/vue-event-bus";
 Vue.use(VueEventBus);
 ```
 
-### Usage
+## Usage
 Inside your Components e.g. `App.vue`
 ```javascript
 export default {
@@ -58,7 +58,7 @@ This Plugin provides the following interface
 | eventName | yes      | The name of the event to be fired.                                                                           |
 | params    | no       | The parameter to be passed to the event. If multiple parameters are required, they must be passed as object. |
 
-### License
+## License
 
 MIT
 
