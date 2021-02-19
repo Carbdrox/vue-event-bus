@@ -1,40 +1,63 @@
+// Need to declare static vars here, cause you cant export classes with static vars..
+const listeners =  {};
+
 export class EventService {
 
-    constructor() {
-        this.listeners = {};
-    }
-
-    listen(eventName, listener) {
-        if(!this.listeners.hasOwnProperty(eventName)) {
-            this.listeners[eventName] = [];
+    addListener(eventName, listener, amount = -1) {
+        if(!listeners.hasOwnProperty(eventName)) {
+            listeners[eventName] = {};
         }
 
-        this.listeners[eventName].push(listener);
+        listeners[eventName][this._uid] = {
+            id: this._uid,
+            amount: amount,
+            callback: listener
+        };
     }
 
-    listenNTimes(eventName, listener, amount = 1) {
+    removeListener(eventName = '', listener = null) {
+        if(!!eventName && listeners.hasOwnProperty(eventName)) {
+            if(!!listener){
+                for (let id in listeners[eventName]) {
+                    if(listeners[eventName][id]['callback'] === listener) {
+                        delete listeners[eventName][id];
+                    }
+                }
+                return;
+            }
+            delete listeners[eventName];
+            return;
+        }
 
+        for (let key in listeners) {
+            delete listeners[key];
+        }
     }
 
-    listenOnce(eventName, listener) {
-        return this.listenNTimes(eventName, listener, 1);
-    }
-
-    detatch(eventName, listener) {
-
-    }
-
-    detachAll() {
-
+    unregisterComponent(uId) {
+        for (let event in listeners) {
+            for (let id in listeners[event]) {
+                if(parseInt(id) === parseInt(uId)) {
+                    delete listeners[event][id];
+                }
+            }
+        }
     }
 
     emit(eventName, params = {}) {
-        if(this.listeners.hasOwnProperty(eventName)) {
-            let listeners = [...this.listeners[eventName]].reverse();
+        if(listeners.hasOwnProperty(eventName)) {
+            Object.keys(listeners[eventName]).forEach(id => {
+                if(listeners[eventName][id]['amount'] === 0) {
+                    delete listeners[eventName][id];
+                    return;
+                }
 
-            listeners.forEach(listener => {
-                listener(params);
-            });
+                listeners[eventName][id]['callback'](params);
+
+                if(listeners[eventName][id]['amount'] > 0) {
+                    listeners[eventName][id]['amount'] -= 1;
+                }
+            })
         }
     }
 }
