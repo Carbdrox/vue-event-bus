@@ -1,6 +1,6 @@
 {
   "name": "@carbdrox/vue-event-bus",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Vue.Js plugin which adds a global event bus to your project.",
   "amdName": "VueEventBus",
   "main": "src/install.js",

@@ -1,8 +1,9 @@
 import { EventService } from './services/EventService'
 
+const eventBus = new EventService();
+
 export default {
     install(Vue) {
-        const eventBus = new EventService();
 
         Vue.mixin({
             beforeDestroy() {
@@ -10,8 +11,16 @@ export default {
             }
         })
 
-        Vue.prototype.$addListener = eventBus.addListener;
-        Vue.prototype.$removeListener = eventBus.removeListener;
-        Vue.prototype.$emitEvent = eventBus.emit;
+        Vue.prototype.$addListener = function (eventName, listener, amount = -1) {
+            return eventBus.addListener(this._uid, eventName, listener, amount);
+        };
+
+        Vue.prototype.$removeListener = (eventName = '', listener = null) => {
+            return eventBus.removeListener(eventName, listener);
+        };
+
+        Vue.prototype.$emitEvent = (eventName, params = {}) => {
+            return eventBus.emit(eventName, params)
+        };
     }
 };
